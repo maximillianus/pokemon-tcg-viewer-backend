@@ -1,13 +1,18 @@
 import express from 'express';
 import * as crypto from 'crypto';
 import { connectToDB, insertToRequest } from './db.js';
-const app = express();
-const port = 3000
+import dotenv from 'dotenv';
+dotenv.config();
 
+
+const app = express();
 app.use(express.json());
 
-const sqlitedb = './pokemontcg.db'
+const port = 3000;
+const sqlitedb = process.env.REQUESTDB;
 const db = connectToDB(sqlitedb);
+
+
 
 app.get('/health', (req, res) => {
   payload = {
