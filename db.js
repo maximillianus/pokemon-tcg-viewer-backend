@@ -11,8 +11,14 @@ const pokemonRequest = {
 }
 
 function insertToRequest(dbconn, payload) {
-  let sql = `INSERT INTO requests (uuid, search_text, pokemon, ip_address)
-             VALUES ('${payload.uuid}', '${payload.search_text}', '${payload.pokemon}', '${payload.ip_address}')`
+  let sql = `INSERT INTO requests (uuid, search_text, pokemon, sets, ip_address)
+             VALUES (
+              '${payload.uuid}',
+              '${payload.search_text}',
+              '${payload.pokemon}',
+              '${payload.sets}',
+              '${payload.ip_address}'
+              )`
   dbconn.run(sql, (err, result) => {
     if (err) throw err;
     console.log('Insert succeeds');
